@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>image-slider Demo</title>
+
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="image-slider.html">
+    <style>
+        image-slider {
+            width: 600px;
+            height: 450px;
+        }
+    </style>
+
+</head>
+
+<body unresolved>
+<h1>Slider with controls</h1>
+<image-slider>
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+    <img src="img/4.jpg">
+</image-slider>
+
+<h1>Cycling Slider</h1>
+<image-slider cycle="true">
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+    <img src="img/4.jpg">
+</image-slider>
+
+<h1>Slider with pre-selected item</h1>
+<image-slider selected="3">
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+    <img src="img/4.jpg">
+</image-slider>
+
+<h1>Slider without controls</h1>
+<image-slider controls="false">
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+    <img src="img/4.jpg">
+</image-slider>
+</body>
+</html>

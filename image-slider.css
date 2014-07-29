@@ -1,0 +1,52 @@
+:host {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+#controls {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#controls #previous, #controls #next {
+    position: absolute;
+    width: 14%;
+    height: 100%;
+    background: transparent;
+    cursor: pointer;
+}
+#controls #previous:hover, #controls #next:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#controls #previous {
+    left: 0;
+}
+#controls #next {
+    right: 0;
+}
+#controls #indicators {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    color: #ccc;
+}
+#controls #indicators span {
+    opacity: 0.4;
+    font-size: 25px;
+    margin: 0 3px;
+}
+#controls #indicators span.active {
+    opacity: 0.9;
+}
+
+::content img {
+    max-width: 100%;
+}
+
+/* To ensure your styling works under the Shadow DOM polyfill, see
+   www.polymer-project.org/docs/polymer/styling.html#directives */
+polyfill-next-selector { content: ':host > h2'; }

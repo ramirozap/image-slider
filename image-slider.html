@@ -1,0 +1,153 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Configurable Image Slider.
+
+##### Example
+
+    <image-slider>
+        <img src="a.png" />
+        <img src="b.png" />
+        <img src="c.png" />
+    </image-slider>
+
+@element image-slider
+@blurb Configurable Image Slider.
+@status alpha
+@homepage http://seiffert.github.io/image-slider
+-->
+<polymer-element name="image-slider" attributes="controls cycle selected">
+
+    <template>
+
+        <link rel="stylesheet" href="image-slider.css" />
+
+        <div id="controls">
+            <div id="previous"></div>
+            <div id="next"></div>
+            <div id="indicators"></div>
+        </div>
+        <content id="content"></content>
+
+    </template>
+
+    <script>
+        function onPreviousClicked(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.previous();
+        }
+
+        function onNextClicked(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.next();
+        }
+
+        Polymer('image-slider', {
+            /**
+             * @attribute author
+             * @type string
+             * @default 'Paul Seiffert'
+             */
+            author: 'Paul Seiffert',
+
+            /**
+             * `controls` configures whether the slider displays control elements or not.
+             *
+             * @property controls
+             * @type bool
+             * @default true
+             */
+            controls: true,
+
+            /**
+             * `cycle` configures whether the slider cycles its images or not.
+             * Cycling means that if the end of the item list is reached, the slider re-starts at the beginning and
+             * vice versa.
+             *
+             * @property cycle
+             * @type bool
+             * @default false
+             */
+            cycle: false,
+
+            numItems: 0,
+            selected: 0,
+
+            ready: function () {
+                if (false === this.controls) {
+                    this.$.controls.style.display = 'none';
+                }
+
+                this.numItems = this.children.length;
+                for (var i = 0; i < this.numItems; i++) {
+                    var bullet = document.createElement('span');
+                    bullet.innerHTML = '&bull;';
+                    this.$.indicators.appendChild(bullet);
+                }
+                if (0 !== this.numItems) {
+                    if (this.selected < this.numItems) {
+                        this.jumpTo(this.selected);
+                    } else {
+                        this.jumpTo(0);
+                    }
+                }
+
+                this.$.previous.addEventListener('click', onPreviousClicked.bind(this));
+                this.$.next.addEventListener('click', onNextClicked.bind(this));
+            },
+
+            /**
+             * The `jumpTo` method will make the slider jump to the element at the provided index.
+             *
+             * @method jumpTo
+             * @param {Number} index
+             */
+            jumpTo: function (index) {
+                this.children[index].style.display = '';
+                this.$.indicators.children[index].className = ' active';
+
+                for (var i = 0; i < this.numItems; i++) {
+                    if (i !== index) {
+                        this.children[i].style.display = 'none';
+                        this.$.indicators.children[i].className = ' ';
+                    }
+                }
+                this.selected = index;
+            },
+
+            /**
+             * The `next` method will make the slider jump to the next element. If there is no next element and the
+             * slider has been configured to cycle, the slider will jump to the first element.
+             *
+             * @method next
+             */
+            next: function () {
+                if (this.selected < this.numItems - 1) {
+                    this.jumpTo(this.selected + 1);
+                } else if (this.cycle && this.selected > 0) {
+                    this.jumpTo(0);
+                }
+            },
+
+            /**
+             * The `previous` method will make the slider jump to the previous element. If there is no previous element
+             * and the slider has been configured to cycle, the slider will jump to the last element.
+             *
+             * @method next
+             */
+            previous: function () {
+                if (this.selected > 0) {
+                    this.jumpTo(this.selected - 1);
+                } else if (this.cycle && this.numItems > 1) {
+                    this.jumpTo(this.numItems - 1);
+                }
+            }
+        });
+
+    </script>
+
+</polymer-element>

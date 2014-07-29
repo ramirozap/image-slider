@@ -1,0 +1,19 @@
+{
+  "name": "image-slider",
+  "version": "0.0.0",
+  "authors": [
+    "Paul Seiffert <paul.seiffert@gmail.com>"
+  ],
+  "description": "Configurable Image Slider",
+  "keywords": "slider, imge, polymer, web-components",
+  "main": "image-slider.html",
+  "license": "MIT",
+  "homepage": "https://github.com/seiffert/image-slider/",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.3",
+    "polymer-test-tools": "Polymer/polymer-test-tools#~0.3.3"
+  }
+}
