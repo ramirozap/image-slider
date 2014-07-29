@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>seed-element</title>
+
+  <script src="../../platform/platform.js"></script>
+  <link rel="import" href="../../polymer-test-tools/tools.html">
+  <script src="../../polymer-test-tools/htmltest.js"></script>
+  
+  <link rel="import" href="../image-slider.html">
+
+</head>
+<body>
+
+    <image-slider autoslide="400">
+        <img src="../img/1.jpg" />
+        <img src="../img/2.jpg" />
+        <img src="../img/3.jpg" />
+    </image-slider>
+
+    <script>
+
+        document.addEventListener('polymer-ready', function() {
+            var slider = document.querySelector('image-slider');
+
+            var i = 1;
+            var intervalHandle = setInterval(function () {
+                assert.equal(slider.selected, i++);
+
+                if (i == 2) {
+                    clearInterval(intervalHandle);
+
+                    done();
+                }
+            }, 500);
+        });
+
+    </script>
+
+</body>
+</html>

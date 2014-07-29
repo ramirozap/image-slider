@@ -16,7 +16,7 @@ Configurable Image Slider.
 @status alpha
 @homepage http://seiffert.github.io/image-slider
 -->
-<polymer-element name="image-slider" attributes="controls cycle selected">
+<polymer-element name="image-slider" attributes="controls cycle selected autoslide">
 
     <template>
 
@@ -74,6 +74,17 @@ Configurable Image Slider.
              */
             cycle: false,
 
+            /**
+             * `autoslide` configures whether the slider changes items automatically and in which interval.
+             * If set to 0 (which is the default), auto-sliding is disabled. Otherwise, the value of the autoslide
+             * attribute will be used as interval (in milliseconds).
+             *
+             * @property autoslide
+             * @type number
+             * @default 0
+             */
+            autoslide: 0,
+
             numItems: 0,
             selected: 0,
 
@@ -94,6 +105,9 @@ Configurable Image Slider.
                     } else {
                         this.jumpTo(0);
                     }
+                }
+                if (0 !== this.autoslide) {
+                    setInterval(this.next.bind(this), this.autoslide);
                 }
 
                 this.$.previous.addEventListener('click', onPreviousClicked.bind(this));
