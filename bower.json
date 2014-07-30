@@ -1,0 +1,7 @@
+{
+  "name": "image-slider#gh-pages",
+  "private": true,
+  "dependencies": {
+    "image-slider": "seiffert/image-slider#master"
+  }
+}

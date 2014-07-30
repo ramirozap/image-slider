@@ -1,0 +1,25 @@
+<link rel="import" href="../../polymer-test-tools/tools.html">
+
+<script src="../../polymer-test-tools/mocha-htmltest.js"></script>
+
+<script>
+
+  mocha.setup({ui: 'tdd', slow: 1000, timeout: 5000, htmlbase: ''});
+
+  // Below is a set of sample element test suites. 
+  // Replace these with your own suites of tests.
+
+  htmlSuite('image-slider', function() {
+    htmlTest('image-slider-empty.html');
+    htmlTest('image-slider-non-empty.html');
+    htmlTest('image-slider-cycling.html');
+    htmlTest('image-slider-preselection.html');
+    htmlTest('image-slider-no-controls.html');
+    htmlTest('image-slider-autoslide.html');
+  });
+
+  // End sample test suites
+
+  mocha.run();
+
+</script>
