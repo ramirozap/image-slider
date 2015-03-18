@@ -35,14 +35,20 @@ Configurable Image Slider.
         function onPreviousClicked(e) {
             e.preventDefault();
             e.stopPropagation();
-
+            if (0 !== this.autoslide) {
+                clearInterval(this.interval);
+                this.interval = setInterval(this.next.bind(this), this.autoslide);
+            }
             this.previous();
         }
 
         function onNextClicked(e) {
             e.preventDefault();
             e.stopPropagation();
-
+            if (0 !== this.autoslide) {
+                clearInterval(this.interval);
+                this.interval = setInterval(this.next.bind(this), this.autoslide);
+            }
             this.next();
         }
 
@@ -107,7 +113,7 @@ Configurable Image Slider.
                     }
                 }
                 if (0 !== this.autoslide) {
-                    setInterval(this.next.bind(this), this.autoslide);
+                    this.interval = setInterval(this.next.bind(this), this.autoslide);
                 }
 
                 this.$.previous.addEventListener('click', onPreviousClicked.bind(this));
